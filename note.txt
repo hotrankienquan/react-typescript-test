@@ -1,0 +1,5 @@
+error An unexpected error occurred: "EPERM: operation not permitted
+
+->lỗi này dừng server yarrn dev lại , và yarn install là được
+
+

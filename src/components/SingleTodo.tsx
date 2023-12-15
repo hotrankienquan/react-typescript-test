@@ -6,6 +6,7 @@ const SingleTodo:React.FC<IEditTodo> = (props:IEditTodo) => {
     // const [todo,setTodo] = useState<{content:string, id:string}>();
     const [todo, setTodo] = useState<string>(props.todo?.content || "");
     const [idChange,setIdChange] = useState<number>();
+    console.log("🚀 ~ file: SingleTodo.tsx:8 ~ todo:", todo,idChange)
     const [isEditing,setIsEditing] = useState<boolean>(false)
     const todoAfterChange:ITodo = {
       id: idChange || 0,
@@ -13,38 +14,38 @@ const SingleTodo:React.FC<IEditTodo> = (props:IEditTodo) => {
       isDone: props?.todo?.isDone || false
     }
     return(
-      <>
-      <span style={{
+        <>
+        <span style={{
                   color: props.todo?.isDone === true ? "green":""
                 }}>{props.todo?.content}</span>
-      {!isEditing && (
-  
-        <button onClick={()=>setIsEditing(true)}>edit</button>
-  
-      )}
-      {isEditing && (
-        <>
-        <input type="text" value={todo} name={props?.todo?.id.toString() } 
-        onChange={(e) => {
-            setIdChange(props.todo?.id)
-            setTodo(e.target.value)}
-        } />
-            <button 
-            onClick={()=>{
-                props?.handleUpdateTodosAfterEdit(todoAfterChange, idChange!)
-                setIsEditing(false)
-            }}
-            >OK</button>
-            <button onClick={()=>setIsEditing(false)}>Cancel edit</button>
-            </>
-      )}
-      <button style={{marginLeft:'10px'}} 
-            onClick={() => props?.handleToggleTick(props?.todo?.id || 0)}
-            >Tick</button>
-            <button style={{marginLeft:'10px'}}
-             onClick={()=>props?.handleDeleteTodo(props?.todo?.id || 0)}
-             >Delete</button>
-      </>
+                    {!isEditing && (
+                
+                        <button onClick={()=>setIsEditing(true)}>edit</button>
+                
+                    )}
+                    {isEditing && (
+                        <>
+                        <input type="text" value={todo} name={props?.todo?.id.toString() } 
+                        onChange={(e) => {
+                            setIdChange(props.todo?.id)
+                            setTodo(e.target.value)}
+                        } />
+                            <button 
+                            onClick={()=>{
+                                props?.handleUpdateTodosAfterEdit(todoAfterChange, idChange!)
+                                setIsEditing(false)
+                            }}
+                            >OK</button>
+                            <button onClick={()=>setIsEditing(false)}>Cancel edit</button>
+                            </>
+                    )}
+                    <button style={{marginLeft:'10px'}} 
+                            onClick={() => props?.handleToggleTick(props?.todo?.id || 0)}
+                            >Tick</button>
+                            <button style={{marginLeft:'10px'}}
+                            onClick={()=>props?.handleDeleteTodo(props?.todo?.id || 0)}
+                            >Delete</button>
+        </>
     )
   }
   export default SingleTodo
